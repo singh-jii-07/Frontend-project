@@ -5,7 +5,7 @@ import axios from 'axios';
 import {Navigate} from 'react-router-dom'
 
 
-const protectedRoute = ({role,layout,redirectTo="/401"}) => {
+const ProtectedRoute = ({role,layout,redirectTo="/401"}) => {
     const [loading,setLoading]=useState(false);
     const [authorized,setAuthorized]=useState(false);
     useEffect(()=>{
@@ -33,13 +33,14 @@ const protectedRoute = ({role,layout,redirectTo="/401"}) => {
             </p>
         </div>;
     }
-    if(!loading){
+    if(!authorized){
         return (
          <Navigate to={redirectTo}/>
           )
     }
+    return layout
 
  
 }
 
-export default protectedRoute
+export default ProtectedRoute
